@@ -104,6 +104,12 @@ h1,h2,h3,h4{font-family:'Playfair Display', serif;}
   position:relative; min-height:100vh; display:flex; flex-direction:column;
   align-items:center; justify-content:center; text-align:center; padding:140px 24px 100px; overflow:hidden;
 }
+.hero {
+    background-image: url('/uploads/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 .hero-noise{
   position:absolute; inset:0;
   background:

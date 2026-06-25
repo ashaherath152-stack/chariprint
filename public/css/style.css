@@ -104,6 +104,18 @@ h1,h2,h3,h4{font-family:'Playfair Display', serif;}
   position:relative; min-height:100vh; display:flex; flex-direction:column;
   align-items:center; justify-content:center; text-align:center; padding:140px 24px 100px; overflow:hidden;
 }
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    z-index: 1;
+}
+
+.hero > * {
+    position: relative;
+    z-index: 2;
+}
 .hero {
     background-image: url('/uploads/gallery/hero.jpg');
     background-size: cover;

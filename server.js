@@ -12,6 +12,7 @@ const adminAuthRoutes = require('./routes/admin-auth');
 const adminRoutes = require('./routes/admin');
 
 const app = express();
+app.set('trust proxy', 1);
 
 // ---------- View engine ----------
 app.set('view engine', 'ejs');
@@ -29,11 +30,11 @@ app.use(session({
   secret: process.env.SESSION_SECRET || 'dev-secret-change-me',
   resave: false,
   saveUninitialized: false,
-  cookie: {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production', // requires HTTPS in production
-    maxAge: 1000 * 60 * 60 * 4, // 4 hour admin session
-  },
+cookie: {
+  httpOnly: true,
+  secure: false,
+  maxAge: 1000 * 60 * 60 * 4,
+},
 }));
 
 // ---------- Flash messages (success/error banners after redirects) ----------

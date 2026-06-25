@@ -113,7 +113,12 @@ h1,h2,h3,h4{font-family:'Playfair Display', serif;}
 .hero-noise{
     position:absolute;
     inset:0;
-    background:rgba(0,0,0,0.55);
+    background:
+        linear-gradient(
+            rgba(0,0,0,0.75),
+            rgba(0,0,0,0.55)
+        );
+    backdrop-filter: blur(2px);
     z-index:1;
 }
 .hero > *{
@@ -126,13 +131,19 @@ h1,h2,h3,h4{font-family:'Playfair Display', serif;}
 
 .hero-line,
 .hero-sub{
-    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    text-shadow: 0 2px 12px rgba(0,0,0,0.9);
 }
 .hero-eyebrow{ opacity:0; animation: fadeUp .8s ease .1s forwards; }
 .hero-mark{
-  font-family:'Playfair Display', serif; font-weight:800; line-height:0.92;
-  font-size:clamp(56px, 13vw, 168px); letter-spacing:0.01em; margin-top:22px;
-  opacity:0; animation: fadeUp 1s ease .25s forwards;
+    font-family:'Playfair Display', serif;
+    font-weight:800;
+    line-height:0.92;
+    font-size:clamp(56px,13vw,168px);
+    letter-spacing:0.01em;
+    margin-top:22px;
+    text-shadow:
+        0 0 20px rgba(0,0,0,0.7),
+        0 0 40px rgba(0,0,0,0.5);
 }
 .hero-rule{ margin:30px auto 18px; width:0; height:1px; background:var(--gold); animation: growLine 1s ease .9s forwards; }
 .hero-sub{ font-size:13px; letter-spacing:0.38em; text-transform:uppercase; color:var(--paper-dim); opacity:0; animation: fadeUp .8s ease 1.05s forwards; }

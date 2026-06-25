@@ -1,7 +1,4 @@
 // middleware/upload.js
-// Handles image uploads via multer, with file-type validation and
-// automatic resizing/compression via sharp so the dashboard stays fast
-// even on a budget shared-hosting plan.
 
 const multer = require('multer');
 const path = require('path');
@@ -9,18 +6,32 @@ const fs = require('fs');
 const sharp = require('sharp');
 
 const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
-const MAX_SIZE = parseInt(process.env.MAX_UPLOAD_SIZE || '5242880', 10); // 5MB default
+const MAX_SIZE = parseInt(
+  process.env.MAX_UPLOAD_SIZE || '5242880',
+  10
+);
 
 function makeStorage(subfolder) {
-  const dest = path.join(__dirname, '..', 'public', 'uploads', subfolder);
+  const dest = path.join(
+    __dirname,
+    '..',
+    'public',
+    'uploads',
+    subfolder
+  );
+
   return multer.diskStorage({
     destination: (req, file, cb) => {
       fs.mkdirSync(dest, { recursive: true });
       cb(null, dest);
     },
+
     filename: (req, file, cb) => {
       const ext = path.extname(file.originalname).toLowerCase();
-      const safeName = `${subfolder}-${Date.now()}-${Math.round(Math.random() * 1e6)}${ext}`;
+
+      const safeName =
+        `${subfolder}-${Date.now()}-${Math.round(Math.random() * 1000000)}${ext}`;
+
       cb(null, safeName);
     },
   });
@@ -37,25 +48,31 @@ function fileFilter(req, file, cb) {
 const uploadProduct = multer({
   storage: makeStorage('products'),
   fileFilter,
-  limits: { fileSize: MAX_SIZE },
+  limits: {
+    fileSize: MAX_SIZE,
+  },
 });
 
 const uploadGallery = multer({
   storage: makeStorage('gallery'),
   fileFilter,
-  limits: { fileSize: MAX_SIZE },
+  limits: {
+    fileSize: MAX_SIZE,
+  },
 });
 
-// Optional post-processing: re-compress + cap dimensions so large phone photos
-// don't bloat shared-hosting disk space or slow down the public pages.
-
-  async function optimizeImage(filePath) {
+async function optimizeImage(filePath) {
   try {
     const tempPath = filePath + '.tmp';
 
     await sharp(filePath)
-      .resize({ width: 1200, withoutEnlargement: true })
-      .jpeg({ quality: 80 })
+      .resize({
+        width: 1200,
+        withoutEnlargement: true,
+      })
+      .jpeg({
+        quality: 80,
+      })
       .toFile(tempPath);
 
     fs.unlinkSync(filePath);
@@ -70,5 +87,3 @@ module.exports = {
   uploadGallery,
   optimizeImage,
 };
-}
-

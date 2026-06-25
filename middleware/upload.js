@@ -48,19 +48,7 @@ const uploadGallery = multer({
 
 // Optional post-processing: re-compress + cap dimensions so large phone photos
 // don't bloat shared-hosting disk space or slow down the public pages.
-async function optimizeImage(filePath) {
-  try {
-    const tmpPath = filePath + '.tmp';
-    await sharp(filePath)
-      .resize({ width: 1600, height: 1600, fit: 'inside', withoutEnlargement: true })
-      .jpeg({ quality: 82, mozjpeg: true })
-      .toFile(tmpPath);
-    fs.renameSync(tmpPath, filePath);
-  } catch (err) {
-    // If optimization fails (e.g. unsupported format edge case), keep the original file —
-    // don't block the upload over a non-critical step.
-    console.warn('Image optimization skipped:', err.message);
-  }
+
   async function optimizeImage(filePath) {
   try {
     const tempPath = filePath + '.tmp';
@@ -84,4 +72,3 @@ module.exports = {
 };
 }
 
-module.exports = { uploadProduct, uploadGallery, optimizeImage };

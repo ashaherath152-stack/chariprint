@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include('../partials/public-head') %>
+</head>
+<body>
+<%- include('../partials/public-header') %>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-noise" aria-hidden="true"></div>
+    <span class="eyebrow hero-eyebrow">Custom DTF Printing</span>
+    <h1 class="hero-mark"><%= (settings.business_name || 'Chari Fashion').split(' ')[0].toUpperCase() %></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub"><%= (settings.business_name || 'Chari Fashion').split(' ').slice(1).join(' ') || 'Fashion' %></p>
+    <p class="hero-line">Send us your design, we press it onto the shirt. <strong>Direct-to-film printing</strong> — sharp detail, full colour, made to order in Sri Lanka.</p>
+    <div class="hero-actions">
+      <a href="/custom-printing" class="btn btn-primary">Start an Order</a>
+      <a href="/gallery" class="btn btn-ghost">View Gallery</a>
+    </div>
+    <div class="scroll-cue">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- WHAT IS DTF -->
+  <section class="dtf">
+    <div class="wrap section-pad">
+      <div class="dtf-grid">
+        <div class="dtf-copy reveal">
+          <span class="eyebrow">What We Print</span>
+          <h3>One print method. Done properly.</h3>
+          <p>We specialise in <strong>DTF (Direct-to-Film) printing</strong> — no shortcuts. Your artwork is printed onto film, dusted with adhesive powder, then heat-pressed straight onto the fabric.</p>
+          <p>That means <strong>vibrant colour</strong>, fine detail on small text and line art, and a finish that holds up wash after wash.</p>
+        </div>
+        <div class="reveal">
+          <div class="transfer-stage" id="transferStage">
+            <div class="tee">
+              <svg viewBox="0 0 300 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M95 18 C95 18 120 38 150 38 C180 38 205 18 205 18 L262 52 L235 100 L210 86 L210 300 L90 300 L90 86 L65 100 L38 52 L95 18 Z"
+                      fill="#161616" stroke="#3a3a3a" stroke-width="2"/>
+                <path d="M118 24 C126 36 138 44 150 44 C162 44 174 36 182 24"
+                      stroke="#3a3a3a" stroke-width="2" fill="none"/>
+              </svg>
+              <div class="tee-design">YOUR<br>DESIGN</div>
+            </div>
+          </div>
+          <p class="transfer-caption">Film → Powder → Heat Press → Worn</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section>
+    <div class="wrap section-pad">
+      <div class="section-head reveal">
+        <span class="eyebrow">Featured Designs</span>
+        <h2>Fresh off the press</h2>
+        <p>A look at recent designs. Visit the full gallery to see pricing and every design we offer.</p>
+      </div>
+
+      <% if (featured && featured.length) { %>
+        <div class="product-grid reveal">
+          <% featured.forEach(p => { %>
+            <div class="product-card">
+              <div class="product-img">
+                <% if (p.image_path) { %>
+                  <img src="<%= p.image_path %>" alt="<%= p.name %>" loading="lazy">
+                <% } else { %>
+                  <div class="ph-mark-lg">✦</div>
+                <% } %>
+              </div>
+              <div class="product-info">
+                <h4><%= p.name %></h4>
+                <span class="price">Rs. <%= Number(p.price).toLocaleString() %></span>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      <% } else { %>
+        <p class="empty-note reveal">Designs are being added soon — check back shortly, or message us directly for current options.</p>
+      <% } %>
+
+      <div class="center-cta reveal">
+        <a href="/gallery" class="btn btn-ghost">See Full Gallery</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="dtf">
+    <div class="wrap section-pad">
+      <div class="section-head reveal">
+        <span class="eyebrow">Why <%= settings.business_name || 'Chari Fashion' %></span>
+        <h2>Built around the print, not around excuses</h2>
+      </div>
+      <div class="why-grid reveal">
+        <div class="why-item">
+          <div class="gold-rule"></div>
+          <h4>True to the File</h4>
+          <p>DTF holds fine detail and gradients that other methods lose — what you send is close to what you get.</p>
+        </div>
+        <div class="why-item">
+          <div class="gold-rule"></div>
+          <h4>Any Order Size</h4>
+          <p>A single shirt for yourself or a full run for your team, shop, or event — same care, same process.</p>
+        </div>
+        <div class="why-item">
+          <div class="gold-rule"></div>
+          <h4>Direct Communication</h4>
+          <p>Every order is confirmed with you over WhatsApp before printing — no surprises when it's ready.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <section class="cta-strip">
+    <div class="wrap reveal">
+      <h2>Have a design ready?</h2>
+      <p>Send it over and we'll quote you the same day.</p>
+      <a href="/custom-printing" class="btn btn-primary">Submit Your Design</a>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/public-footer') %>
+</body>
+</html>

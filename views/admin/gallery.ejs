@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include('../partials/admin-head') %>
+</head>
+<body class="admin-body">
+<%- include('../partials/admin-sidebar') %>
+
+<main class="admin-main">
+  <%- include('../partials/admin-topbar') %>
+
+  <div class="form-card" style="margin-bottom:32px;">
+    <h3 style="margin-bottom:18px; font-family:'Playfair Display',serif;">Add Gallery Image</h3>
+    <form action="/admin/gallery/new" method="POST" enctype="multipart/form-data">
+      <div class="form-row">
+        <div class="form-field">
+          <label for="title">Title (optional)</label>
+          <input type="text" id="title" name="title" placeholder="e.g. Team order — June 2026">
+        </div>
+        <div class="form-field">
+          <label for="sort_order">Display Order</label>
+          <input type="number" id="sort_order" name="sort_order" value="0">
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="image">Image *</label>
+        <input type="file" id="image" name="image" accept="image/jpeg,image/png,image/webp" required>
+        <span class="field-hint">JPG, PNG, or WEBP. Max 5MB.</span>
+      </div>
+      <button type="submit" class="btn btn-primary">Upload Image</button>
+    </form>
+  </div>
+
+  <% if (galleryImages && galleryImages.length) { %>
+    <div class="admin-gallery-grid">
+      <% galleryImages.forEach(img => { %>
+        <div class="admin-gallery-item">
+          <img src="<%= img.image_path %>" alt="<%= img.title || 'Gallery image' %>">
+          <div class="admin-gallery-caption">
+            <span><%= img.title || 'Untitled' %></span>
+            <form action="/admin/gallery/<%= img.id %>/delete" method="POST" onsubmit="return confirm('Remove this image?');">
+              <button type="submit" class="table-link danger">Delete</button>
+            </form>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <div class="empty-admin-state">
+      <p>No gallery images yet — upload your first one above.</p>
+    </div>
+  <% } %>
+</main>
+</body>
+</html>

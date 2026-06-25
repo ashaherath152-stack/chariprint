@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include('../partials/public-head') %>
+</head>
+<body>
+<%- include('../partials/public-header') %>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Product Gallery</span>
+      <h1>Designs & pricing</h1>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap section-pad">
+
+      <% if (categories && categories.length > 0) { %>
+        <div class="filter-row reveal">
+          <a href="/gallery" class="filter-pill <%= activeCategory === 'all' ? 'active' : '' %>">All</a>
+          <% categories.forEach(cat => { %>
+            <a href="/gallery?category=<%= encodeURIComponent(cat) %>" class="filter-pill <%= activeCategory === cat ? 'active' : '' %>"><%= cat %></a>
+          <% }) %>
+        </div>
+      <% } %>
+
+      <% if (products && products.length) { %>
+        <div class="product-grid reveal">
+          <% products.forEach(p => { %>
+            <div class="product-card">
+              <div class="product-img">
+                <% if (p.image_path) { %>
+                  <img src="<%= p.image_path %>" alt="<%= p.name %>" loading="lazy">
+                <% } else { %>
+                  <div class="ph-mark-lg">✦</div>
+                <% } %>
+              </div>
+              <div class="product-info">
+                <h4><%= p.name %></h4>
+                <% if (p.description) { %><p class="product-desc"><%= p.description %></p><% } %>
+                <div class="product-bottom">
+                  <span class="price">Rs. <%= Number(p.price).toLocaleString() %></span>
+                  <a href="https://wa.me/<%= settings.whatsapp_1 %>?text=<%= encodeURIComponent('Hi, I\'m interested in: ' + p.name) %>" target="_blank" rel="noopener" class="mini-btn">Order</a>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      <% } else { %>
+        <div class="empty-state reveal">
+          <p>No products in this category yet.</p>
+          <p class="empty-sub">New designs are added regularly — message us directly to ask what's available right now.</p>
+        </div>
+      <% } %>
+    </div>
+  </section>
+
+  <!-- GENERAL SHOWCASE GALLERY -->
+  <section class="gallery">
+    <div class="wrap section-pad">
+      <div class="section-head reveal">
+        <span class="eyebrow">Our Work</span>
+        <h2>Finished prints</h2>
+        <p>A look at completed orders and prints leaving the press.</p>
+      </div>
+
+      <% if (galleryImages && galleryImages.length) { %>
+        <div class="gallery-grid reveal">
+          <% galleryImages.forEach(img => { %>
+            <div class="sample-card filled">
+              <img src="<%= img.image_path %>" alt="<%= img.title || 'Chari Fashion print sample' %>" loading="lazy">
+              <% if (img.title) { %><span class="sample-caption"><%= img.title %></span><% } %>
+            </div>
+          <% }) %>
+        </div>
+      <% } else { %>
+        <div class="gallery-grid reveal">
+          <div class="sample-card"><span class="tag">Coming Soon</span><div class="ph-mark">✦</div><span>Photo to be<br>added</span></div>
+          <div class="sample-card"><span class="tag">Coming Soon</span><div class="ph-mark">✦</div><span>Photo to be<br>added</span></div>
+          <div class="sample-card"><span class="tag">Coming Soon</span><div class="ph-mark">✦</div><span>Photo to be<br>added</span></div>
+          <div class="sample-card"><span class="tag">Coming Soon</span><div class="ph-mark">✦</div><span>Photo to be<br>added</span></div>
+        </div>
+        <p class="gallery-note reveal">Want to see more right now? <strong>Check our Instagram and TikTok</strong> for the latest finished orders.</p>
+      <% } %>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/public-footer') %>
+</body>
+</html>

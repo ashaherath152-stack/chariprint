@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include('../partials/admin-head') %>
+</head>
+<body class="admin-body">
+<%- include('../partials/admin-sidebar') %>
+
+<main class="admin-main">
+  <%- include('../partials/admin-topbar') %>
+
+  <form class="admin-form" action="/admin/settings" method="POST">
+    <div class="form-card">
+      <h3 class="form-card-title">Business Identity</h3>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="business_name">Business Name</label>
+          <input type="text" id="business_name" name="business_name" value="<%= settings.business_name || '' %>">
+        </div>
+        <div class="form-field">
+          <label for="tagline">Tagline</label>
+          <input type="text" id="tagline" name="tagline" value="<%= settings.tagline || '' %>">
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="about_text">About Text (used on Home & About pages)</label>
+        <textarea id="about_text" name="about_text" rows="4"><%= settings.about_text || '' %></textarea>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h3 class="form-card-title">Contact Information</h3>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="phone_1">Phone Number 1</label>
+          <input type="text" id="phone_1" name="phone_1" value="<%= settings.phone_1 || '' %>" placeholder="0769390735">
+        </div>
+        <div class="form-field">
+          <label for="whatsapp_1">WhatsApp 1 (with country code, no + or spaces)</label>
+          <input type="text" id="whatsapp_1" name="whatsapp_1" value="<%= settings.whatsapp_1 || '' %>" placeholder="94769390735">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="phone_2">Phone Number 2</label>
+          <input type="text" id="phone_2" name="phone_2" value="<%= settings.phone_2 || '' %>" placeholder="0767424749">
+        </div>
+        <div class="form-field">
+          <label for="whatsapp_2">WhatsApp 2 (with country code, no + or spaces)</label>
+          <input type="text" id="whatsapp_2" name="whatsapp_2" value="<%= settings.whatsapp_2 || '' %>" placeholder="94767424749">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" value="<%= settings.email || '' %>">
+        </div>
+        <div class="form-field">
+          <label for="address">Address / Location</label>
+          <input type="text" id="address" name="address" value="<%= settings.address || '' %>">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h3 class="form-card-title">Social Media Links</h3>
+      <div class="form-field">
+        <label for="instagram_url">Instagram URL</label>
+        <input type="url" id="instagram_url" name="instagram_url" value="<%= settings.instagram_url || '' %>">
+      </div>
+      <div class="form-field">
+        <label for="facebook_url">Facebook URL</label>
+        <input type="url" id="facebook_url" name="facebook_url" value="<%= settings.facebook_url || '' %>">
+      </div>
+      <div class="form-field">
+        <label for="tiktok_url">TikTok URL</label>
+        <input type="url" id="tiktok_url" name="tiktok_url" value="<%= settings.tiktok_url || '' %>">
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Save Settings</button>
+    </div>
+  </form>
+</main>
+</body>
+</html>

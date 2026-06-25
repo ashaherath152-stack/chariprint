@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include('../partials/public-head') %>
+</head>
+<body>
+<%- include('../partials/public-header') %>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Contact Us</span>
+      <h1>Let's get your design pressed</h1>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap section-pad">
+      <div class="contact-grid">
+        <div class="contact-copy reveal">
+          <p class="lead-text">Message us your idea on WhatsApp, or find us on Instagram, Facebook, and TikTok for updates and finished orders.</p>
+
+          <div class="contact-list">
+            <% if (settings.phone_1) { %>
+            <div class="contact-row">
+              <div class="contact-icon">☎</div>
+              <div><span class="label">Call / WhatsApp</span><a href="tel:<%= settings.phone_1 %>"><%= settings.phone_1 %></a></div>
+            </div>
+            <% } %>
+            <% if (settings.phone_2) { %>
+            <div class="contact-row">
+              <div class="contact-icon">☎</div>
+              <div><span class="label">Call / WhatsApp</span><a href="tel:<%= settings.phone_2 %>"><%= settings.phone_2 %></a></div>
+            </div>
+            <% } %>
+            <% if (settings.email) { %>
+            <div class="contact-row">
+              <div class="contact-icon">✉</div>
+              <div><span class="label">Email</span><a href="mailto:<%= settings.email %>"><%= settings.email %></a></div>
+            </div>
+            <% } %>
+            <% if (settings.address) { %>
+            <div class="contact-row">
+              <div class="contact-icon">⌖</div>
+              <div><span class="label">Location</span><span class="txt"><%= settings.address %></span></div>
+            </div>
+            <% } %>
+          </div>
+
+          <div class="social-row">
+            <% if (settings.instagram_url) { %><a class="social-btn" href="<%= settings.instagram_url %>" target="_blank" rel="noopener" aria-label="Instagram">◎</a><% } %>
+            <% if (settings.facebook_url) { %><a class="social-btn" href="<%= settings.facebook_url %>" target="_blank" rel="noopener" aria-label="Facebook">f</a><% } %>
+            <% if (settings.tiktok_url) { %><a class="social-btn" href="<%= settings.tiktok_url %>" target="_blank" rel="noopener" aria-label="TikTok">♪</a><% } %>
+          </div>
+        </div>
+
+        <div class="order-card reveal">
+          <span class="eyebrow">Quick Order</span>
+          <h3>Start your order now</h3>
+          <ul class="order-steps">
+            <li><span class="n">1</span> Tap a WhatsApp number below</li>
+            <li><span class="n">2</span> Send your <strong>design, shirt colour, and sizes</strong></li>
+            <li><span class="n">3</span> We confirm price and pickup or delivery</li>
+          </ul>
+          <div class="wa-buttons">
+            <% if (settings.whatsapp_1) { %>
+            <a class="wa-btn" href="https://wa.me/<%= settings.whatsapp_1 %>" target="_blank" rel="noopener">
+              WhatsApp <span class="num"><%= settings.phone_1 %></span>
+            </a>
+            <% } %>
+            <% if (settings.whatsapp_2) { %>
+            <a class="wa-btn" href="https://wa.me/<%= settings.whatsapp_2 %>" target="_blank" rel="noopener">
+              WhatsApp <span class="num"><%= settings.phone_2 %></span>
+            </a>
+            <% } %>
+          </div>
+          <p class="form-alt" style="margin-top:20px;">Have a design ready? <a href="/custom-printing">Submit a custom printing request</a> instead.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/public-footer') %>
+</body>
+</html>

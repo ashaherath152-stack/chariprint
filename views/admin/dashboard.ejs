@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include('../partials/admin-head') %>
+</head>
+<body class="admin-body">
+<%- include('../partials/admin-sidebar') %>
+
+<main class="admin-main">
+  <%- include('../partials/admin-topbar') %>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="stat-label">Total Products</span>
+      <span class="stat-value"><%= stats.totalProducts %></span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Active / Visible</span>
+      <span class="stat-value"><%= stats.activeProducts %></span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Gallery Images</span>
+      <span class="stat-value"><%= stats.totalGalleryImages %></span>
+    </div>
+    <div class="stat-card highlight">
+      <span class="stat-label">New Inquiries</span>
+      <span class="stat-value"><%= stats.newInquiries %></span>
+    </div>
+  </div>
+
+  <div class="quick-actions">
+    <a href="/admin/products/new" class="action-card">
+      <span class="action-ic">+</span>
+      <div><h4>Add New Product</h4><p>Upload a new t-shirt design with price and description.</p></div>
+    </a>
+    <a href="/admin/gallery" class="action-card">
+      <span class="action-ic">▦</span>
+      <div><h4>Manage Gallery</h4><p>Add or remove photos from the public showcase gallery.</p></div>
+    </a>
+    <a href="/admin/inquiries" class="action-card">
+      <span class="action-ic">✉</span>
+      <div><h4>View Inquiries</h4><p>See custom printing requests submitted by customers.</p></div>
+    </a>
+    <a href="/admin/settings" class="action-card">
+      <span class="action-ic">⚙</span>
+      <div><h4>Edit Site Settings</h4><p>Update business name, contact numbers, and social links.</p></div>
+    </a>
+  </div>
+</main>
+</body>
+</html>

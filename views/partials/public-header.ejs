@@ -1,0 +1,25 @@
+<!-- views/partials/public-header.ejs -->
+<!-- Site-wide navigation. activePage variable highlights the current nav link. -->
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="/" class="nav-mark">
+      <%
+        const bizName = (settings.business_name || 'Chari Fashion').toUpperCase();
+        const mid = Math.ceil(bizName.length / 2);
+      %>
+      <%= bizName %>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav-links" id="navLinks">
+      <a href="/" class="<%= activePage === 'home' ? 'active' : '' %>">Home</a>
+      <a href="/about" class="<%= activePage === 'about' ? 'active' : '' %>">About Us</a>
+      <a href="/services" class="<%= activePage === 'services' ? 'active' : '' %>">Services</a>
+      <a href="/gallery" class="<%= activePage === 'gallery' ? 'active' : '' %>">Gallery</a>
+      <a href="/custom-printing" class="<%= activePage === 'custom-printing' ? 'active' : '' %>">Custom Printing</a>
+      <a href="/contact" class="<%= activePage === 'contact' ? 'active' : '' %>">Contact</a>
+    </nav>
+    <a href="/contact" class="nav-cta">Order Now</a>
+  </div>
+</header>

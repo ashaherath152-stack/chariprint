@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include('../partials/admin-head') %>
+</head>
+<body class="admin-body">
+<%- include('../partials/admin-sidebar') %>
+
+<main class="admin-main">
+  <%- include('../partials/admin-topbar') %>
+
+  <form
+    class="admin-form"
+    action="<%= product ? `/admin/products/${product.id}/edit` : '/admin/products/new' %>"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    <div class="form-card">
+      <div class="form-row">
+        <div class="form-field">
+          <label for="name">Product Name *</label>
+          <input type="text" id="name" name="name" required value="<%= product ? product.name : '' %>">
+        </div>
+        <div class="form-field">
+          <label for="price">Price (Rs.) *</label>
+          <input type="number" id="price" name="price" step="0.01" min="0" required value="<%= product ? product.price : '' %>">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="category">Category</label>
+          <input type="text" id="category" name="category" placeholder="e.g. Anime, Custom, Plain" value="<%= product ? product.category : 'General' %>">
+        </div>
+        <div class="form-field">
+          <label for="sort_order">Display Order</label>
+          <input type="number" id="sort_order" name="sort_order" value="<%= product ? product.sort_order : 0 %>">
+          <span class="field-hint">Lower numbers show first.</span>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="4"><%= product ? product.description : '' %></textarea>
+      </div>
+
+      <div class="form-field">
+        <label for="image">Product Image <%= product ? '(leave blank to keep current image)' : '' %></label>
+        <input type="file" id="image" name="image" accept="image/jpeg,image/png,image/webp">
+        <span class="field-hint">JPG, PNG, or WEBP. Max 5MB. Image will be auto-optimized.</span>
+        <% if (product && product.image_path) { %>
+          <img src="<%= product.image_path %>" alt="Current image" class="current-image-preview">
+        <% } %>
+      </div>
+
+      <div class="form-field checkbox-field">
+        <label>
+          <input type="checkbox" name="is_active" value="1" <%= (!product || product.is_active) ? 'checked' : '' %>>
+          Visible on website
+        </label>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <a href="/admin/products" class="btn btn-ghost">Cancel</a>
+      <button type="submit" class="btn btn-primary"><%= product ? 'Save Changes' : 'Add Product' %></button>
+    </div>
+  </form>
+</main>
+</body>
+</html>

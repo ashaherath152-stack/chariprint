@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include('../partials/admin-head') %>
+</head>
+<body class="admin-body">
+<%- include('../partials/admin-sidebar') %>
+
+<main class="admin-main">
+  <%- include('../partials/admin-topbar') %>
+
+  <% if (inquiries && inquiries.length) { %>
+    <div class="inquiry-list">
+      <% inquiries.forEach(inq => { %>
+        <div class="inquiry-card status-<%= inq.status %>">
+          <div class="inquiry-header">
+            <div>
+              <h4><%= inq.name %></h4>
+              <span class="inquiry-date"><%= new Date(inq.created_at).toLocaleString() %></span>
+            </div>
+            <span class="status-pill status-<%= inq.status %>"><%= inq.status %></span>
+          </div>
+
+          <div class="inquiry-body">
+            <p><strong>Phone:</strong> <a href="tel:<%= inq.phone %>"><%= inq.phone %></a> &nbsp;|&nbsp;
+               <strong>WhatsApp:</strong> <a href="https://wa.me/94<%= inq.phone.replace(/^0/, '') %>" target="_blank" rel="noopener">Message</a></p>
+            <% if (inq.email) { %><p><strong>Email:</strong> <%= inq.email %></p><% } %>
+            <% if (inq.garment_type) { %><p><strong>Garment:</strong> <%= inq.garment_type %> <% if (inq.quantity) { %>× <%= inq.quantity %><% } %></p><% } %>
+            <% if (inq.details) { %><p><strong>Details:</strong> <%= inq.details %></p><% } %>
+            <% if (inq.reference_image_path) { %>
+              <img src="<%= inq.reference_image_path %>" alt="Reference image" class="inquiry-ref-img">
+            <% } %>
+          </div>
+
+          <div class="inquiry-actions">
+            <form action="/admin/inquiries/<%= inq.id %>/status" method="POST" class="inline-form">
+              <select name="status" onchange="this.form.submit()">
+                <option value="new" <%= inq.status === 'new' ? 'selected' : '' %>>New</option>
+                <option value="contacted" <%= inq.status === 'contacted' ? 'selected' : '' %>>Contacted</option>
+                <option value="closed" <%= inq.status === 'closed' ? 'selected' : '' %>>Closed</option>
+              </select>
+            </form>
+            <form action="/admin/inquiries/<%= inq.id %>/delete" method="POST" class="inline-form" onsubmit="return confirm('Delete this inquiry?');">
+              <button type="submit" class="table-link danger">Delete</button>
+            </form>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <div class="empty-admin-state">
+      <p>No custom printing inquiries yet.</p>
+    </div>
+  <% } %>
+</main>
+</body>
+</html>

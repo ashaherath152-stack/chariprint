@@ -1,0 +1,44 @@
+<!-- views/partials/public-footer.ejs -->
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <div class="footer-mark"><%= (settings.business_name || 'Chari Fashion').toUpperCase() %></div>
+      <p class="footer-tagline"><%= settings.tagline || 'Custom DTF T-Shirt Printing' %></p>
+      <div class="footer-social">
+        <% if (settings.instagram_url) { %><a href="<%= settings.instagram_url %>" target="_blank" rel="noopener" aria-label="Instagram">◎</a><% } %>
+        <% if (settings.facebook_url) { %><a href="<%= settings.facebook_url %>" target="_blank" rel="noopener" aria-label="Facebook">f</a><% } %>
+        <% if (settings.tiktok_url) { %><a href="<%= settings.tiktok_url %>" target="_blank" rel="noopener" aria-label="TikTok">♪</a><% } %>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="/">Home</a>
+      <a href="/about">About Us</a>
+      <a href="/services">Services</a>
+      <a href="/gallery">Product Gallery</a>
+      <a href="/custom-printing">Custom Printing</a>
+      <a href="/contact">Contact Us</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <% if (settings.phone_1) { %><a href="tel:<%= settings.phone_1 %>"><%= settings.phone_1 %></a><% } %>
+      <% if (settings.phone_2) { %><a href="tel:<%= settings.phone_2 %>"><%= settings.phone_2 %></a><% } %>
+      <% if (settings.email) { %><a href="mailto:<%= settings.email %>"><%= settings.email %></a><% } %>
+      <span class="footer-address"><%= settings.address || '' %></span>
+    </div>
+  </div>
+
+  <div class="hairline"></div>
+  <div class="wrap footer-bottom">
+    <span>© <%= new Date().getFullYear() %> <%= settings.business_name || 'Chari Fashion' %>. All rights reserved.</span>
+    <span>DTF Printing · Sri Lanka</span>
+  </div>
+</footer>
+
+<% if (settings.whatsapp_1) { %>
+<a class="float-wa" href="https://wa.me/<%= settings.whatsapp_1 %>" target="_blank" rel="noopener" aria-label="Message us on WhatsApp" title="WhatsApp us">✆</a>
+<% } %>
+
+<script src="/js/main.js"></script>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include('../partials/public-head') %>
+</head>
+<body>
+<%- include('../partials/public-header') %>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">About Us</span>
+      <h1>The story behind <%= settings.business_name || 'Chari Fashion' %></h1>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap section-pad">
+      <div class="about-grid">
+        <div class="about-copy reveal">
+          <p class="lead-text"><%= settings.about_text || 'Chari Fashion is a Sri Lankan DTF printing studio.' %></p>
+          <p>We started with a simple idea: printing should be sharp, reliable, and easy to order — whether it's one shirt for yourself or a hundred for your team.</p>
+          <p>Every order goes through the same DTF process: your design is printed onto film, finished with adhesive powder, then heat-pressed onto the fabric. No shortcuts, no second-rate prints.</p>
+          <p>We work directly with customers over WhatsApp from quote to delivery, so you always know where your order stands.</p>
+        </div>
+        <div class="about-values reveal">
+          <div class="value-card">
+            <div class="gold-rule"></div>
+            <h4>Quality First</h4>
+            <p>Every print is checked before it leaves the press.</p>
+          </div>
+          <div class="value-card">
+            <div class="gold-rule"></div>
+            <h4>Honest Pricing</h4>
+            <p>Clear prices, confirmed before printing starts.</p>
+          </div>
+          <div class="value-card">
+            <div class="gold-rule"></div>
+            <h4>Fast Turnaround</h4>
+            <p>Most orders are ready within days, not weeks.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-strip">
+    <div class="wrap reveal">
+      <h2>Want to work with us?</h2>
+      <p>Tell us what you need and we'll take it from there.</p>
+      <a href="/contact" class="btn btn-primary">Get in Touch</a>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/public-footer') %>
+</body>
+</html>

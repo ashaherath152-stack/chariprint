@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include('../partials/public-head') %>
+</head>
+<body>
+<%- include('../partials/public-header') %>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <span class="eyebrow">Custom Printing</span>
+      <h1>Tell us what you need</h1>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap section-pad narrow">
+
+      <% if (success) { %>
+        <div class="alert alert-success reveal">
+          <strong>Thanks — your request was sent.</strong>
+          <p>We'll get back to you on WhatsApp or by phone shortly to confirm pricing and details.</p>
+          <a href="https://wa.me/<%= settings.whatsapp_1 %>" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:18px;">Message Us Now</a>
+        </div>
+      <% } else { %>
+
+        <% if (typeof error !== 'undefined' && error) { %>
+          <div class="alert alert-error reveal"><%= error %></div>
+        <% } %>
+
+        <form class="inquiry-form reveal" action="/custom-printing" method="POST" enctype="multipart/form-data">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-field">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="07XXXXXXXX">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="email">Email (optional)</label>
+              <input type="email" id="email" name="email">
+            </div>
+            <div class="form-field">
+              <label for="quantity">Quantity</label>
+              <input type="number" id="quantity" name="quantity" min="1" placeholder="e.g. 1">
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="garment_type">Garment Type</label>
+            <select id="garment_type" name="garment_type">
+              <option value="T-Shirt">T-Shirt</option>
+              <option value="Polo Shirt">Polo Shirt</option>
+              <option value="Hoodie">Hoodie</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="details">Tell us about your design</label>
+            <textarea id="details" name="details" rows="5" placeholder="Colours, placement, sizes, deadline — anything that helps us quote accurately."></textarea>
+          </div>
+
+          <div class="form-field">
+            <label for="reference_image">Reference Image (optional)</label>
+            <input type="file" id="reference_image" name="reference_image" accept="image/jpeg,image/png,image/webp">
+            <span class="field-hint">JPG, PNG, or WEBP. Max 5MB.</span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Submit Request</button>
+          <p class="form-alt">Prefer to talk directly? <a href="https://wa.me/<%= settings.whatsapp_1 %>" target="_blank" rel="noopener">Message us on WhatsApp</a> instead.</p>
+        </form>
+      <% } %>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/public-footer') %>
+</body>
+</html>

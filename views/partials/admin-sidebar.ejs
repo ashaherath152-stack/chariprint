@@ -1,0 +1,30 @@
+<!-- views/partials/admin-sidebar.ejs -->
+<aside class="admin-sidebar">
+  <div class="admin-mark">CHAR<span class="spark">✦</span>I</div>
+  <nav class="admin-nav">
+    <a href="/admin/dashboard" class="<%= title === 'Dashboard' ? 'active' : '' %>">
+      <span class="nav-ic">◆</span> Dashboard
+    </a>
+    <a href="/admin/products" class="<%= title && title.includes('Product') ? 'active' : '' %>">
+      <span class="nav-ic">▢</span> Products
+    </a>
+    <a href="/admin/gallery" class="<%= title === 'Manage Gallery' ? 'active' : '' %>">
+      <span class="nav-ic">▦</span> Gallery
+    </a>
+    <a href="/admin/inquiries" class="<%= title === 'Custom Printing Inquiries' ? 'active' : '' %>">
+      <span class="nav-ic">✉</span> Inquiries
+    </a>
+    <a href="/admin/settings" class="<%= title === 'Site Settings' ? 'active' : '' %>">
+      <span class="nav-ic">⚙</span> Settings
+    </a>
+    <a href="/admin/change-password" class="<%= title === 'Change Password' ? 'active' : '' %>">
+      <span class="nav-ic">⚿</span> Password
+    </a>
+  </nav>
+  <div class="admin-sidebar-bottom">
+    <a href="/" target="_blank" class="view-site-link">↗ View Site</a>
+    <form action="/admin/logout" method="POST">
+      <button type="submit" class="logout-btn">Log Out</button>
+    </form>
+  </div>
+</aside>

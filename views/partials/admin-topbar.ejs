@@ -1,0 +1,12 @@
+<!-- views/partials/admin-topbar.ejs -->
+<div class="admin-topbar">
+  <h1><%= title %></h1>
+  <span class="admin-user">Logged in as <strong><%= adminUsername %></strong></span>
+</div>
+
+<% if (flashSuccess && flashSuccess.length) { %>
+  <div class="alert alert-success"><%= flashSuccess[0] %></div>
+<% } %>
+<% if (flashError && flashError.length) { %>
+  <div class="alert alert-error"><%= flashError[0] %></div>
+<% } %>

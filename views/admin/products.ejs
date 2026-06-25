@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include('../partials/admin-head') %>
+</head>
+<body class="admin-body">
+<%- include('../partials/admin-sidebar') %>
+
+<main class="admin-main">
+  <%- include('../partials/admin-topbar') %>
+
+  <div class="table-toolbar">
+    <a href="/admin/products/new" class="btn btn-primary">+ Add Product</a>
+  </div>
+
+  <% if (products && products.length) { %>
+  <div class="admin-table-wrap">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% products.forEach(p => { %>
+        <tr>
+          <td>
+            <% if (p.image_path) { %>
+              <img src="<%= p.image_path %>" alt="<%= p.name %>" class="thumb">
+            <% } else { %>
+              <div class="thumb thumb-empty">✦</div>
+            <% } %>
+          </td>
+          <td><%= p.name %></td>
+          <td><%= p.category %></td>
+          <td>Rs. <%= Number(p.price).toLocaleString() %></td>
+          <td>
+            <span class="status-pill <%= p.is_active ? 'status-active' : 'status-hidden' %>">
+              <%= p.is_active ? 'Visible' : 'Hidden' %>
+            </span>
+          </td>
+          <td class="actions-cell">
+            <a href="/admin/products/<%= p.id %>/edit" class="table-link">Edit</a>
+            <form action="/admin/products/<%= p.id %>/toggle" method="POST" class="inline-form">
+              <button type="submit" class="table-link"><%= p.is_active ? 'Hide' : 'Show' %></button>
+            </form>
+            <form action="/admin/products/<%= p.id %>/delete" method="POST" class="inline-form" onsubmit="return confirm('Delete this product permanently?');">
+              <button type="submit" class="table-link danger">Delete</button>
+            </form>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <% } else { %>
+    <div class="empty-admin-state">
+      <p>No products yet.</p>
+      <a href="/admin/products/new" class="btn btn-primary">Add Your First Product</a>
+    </div>
+  <% } %>
+</main>
+</body>
+</html>

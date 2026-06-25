@@ -11,7 +11,7 @@ const Product = require('../models/Product');
 const Gallery = require('../models/Gallery');
 const Settings = require('../models/Settings');
 const Inquiry = require('../models/Inquiry');
-const { uploadGallery: uploadInquiryRef, optimizeImage } = require('../middleware/upload');
+const { uploadGallery,optimizeImage} = require('../middleware/upload');
 
 // Settings are needed on every public page (header/footer/contact info),
 // so we load them once here and attach to res.locals.
@@ -104,7 +104,7 @@ router.get('/custom-printing', (req, res) => {
   });
 });
 
-router.post('/custom-printing', uploadInquiryRef.single('reference_image'), async (req, res) => {
+router.post('/custom-printing', uploadGallery.single('reference_image'), async (req, res) => {
   try {
     const { name, phone, email, garment_type, quantity, details } = req.body;
 

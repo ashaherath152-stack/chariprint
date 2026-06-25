@@ -105,7 +105,7 @@ h1,h2,h3,h4{font-family:'Playfair Display', serif;}
   align-items:center; justify-content:center; text-align:center; padding:140px 24px 100px; overflow:hidden;
 }
 .hero {
-    background-image: url('/uploads/gallery/hero.jpg');
+    background-image: url('/uploads/gallery/hero.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
